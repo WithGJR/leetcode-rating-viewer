@@ -1,0 +1,21 @@
+# --- OS Files ---
+.DS_Store
+Thumbs.db
+
+# --- Development Tooling ---
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Dependencies ---
+node_modules/
+
+# --- Chrome Specific ---
+*.pem
+
+# --- Local Environment Variables ---
+.env
+.env.local
