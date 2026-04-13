@@ -70,8 +70,9 @@ function createRatingTag(problemRating) {
     return ratingTag;
 }
 
-async function injectRatingOnProblemsHomePage() {
-    if (!window.location.pathname.includes('/problemset')) return;
+async function injectRatingOnProblemsList() {
+    const pathParts = window.location.pathname.split('/');
+    if (pathParts[1] !== 'problemset' && pathParts[1] !== 'problems') return;
 
     let ratings;
     try {
@@ -178,7 +179,7 @@ let debounceTimer;
 const observer = new MutationObserver(() => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-        injectRatingOnProblemsHomePage();
+        injectRatingOnProblemsList();
         injectRating();
     }, 100); 
 });
