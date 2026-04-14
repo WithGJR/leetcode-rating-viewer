@@ -45,12 +45,12 @@ async function getSolutions() {
     return solutionsPromise;
 }
 
-function createRatingTag(problemRating) {
+function createRatingTag(problemRating, customText) {
     const rating = Math.round(problemRating);
     const ratingTag = document.createElement('span');
 
     ratingTag.className = 'lc-rating-tag';
-    ratingTag.innerText = `⭐ Rating: ${rating}`;
+    ratingTag.innerText = `${customText}${rating}`;
 
     ratingTag.style.cssText = `
         background-color: #2cbb5d;
@@ -103,7 +103,7 @@ async function injectRatingOnProblemsList() {
         if (!problemData) return;
 
         const rating = Math.round(problemData.rating);
-        const ratingTag = createRatingTag(rating);
+        const ratingTag = createRatingTag(rating, '⭐ ');
         let titleElement = titleLink.querySelector('div.ellipsis');
 
         if (titleElement) {
@@ -147,7 +147,7 @@ async function injectRating() {
     if (oldTag) oldTag.remove();
 
     const rating = Math.round(problemData.rating);
-    const ratingTag = createRatingTag(rating);
+    const ratingTag = createRatingTag(rating, '⭐ Rating: ');
     ratingTag.dataset.slug = problemSlug;
     titleElement.appendChild(ratingTag);
 
